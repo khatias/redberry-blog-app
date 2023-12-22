@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css/style.css">
+    <script src="app.js" defer></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="header">
+        <div>
+            <img src="main.css/images/LOGO-02 3.png" alt="logo-image">
+        </div>
+        <button class="login-button" onclick="document.getElementById('id01').style.display='flex'">შესვლა</button>
+        <div id="id01" class="modal">
+            <form class="modal-content animate" onsubmit="login(event)">
+                <div class="container">
+                    <h2 class="modal-title">შესვლა</h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal" style="cursor: pointer;">
+                        <path d="M7.75732 16.2426L16.2426 7.75736" stroke="#1A1A1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M16.2426 16.2426L7.75732 7.75736" stroke="#1A1A1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <label for="email"><b>ელ-ფოსტა</b></label>
+                    <input type="email" id="email" autocomplete="off" placeholder="Example@redberry.ge" required>
+                    <button type="submit">შესვლა</button>
+                </div>
+
+                <div class="success-container">
+                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="vuesax/linear/tick-circle">
+                            <g id="tick-circle">
+                                <path id="Vector" d="M32.0002 58.6667C46.6668 58.6667 58.6668 46.6667 58.6668 32C58.6668 17.3333 46.6668 5.33334 32.0002 5.33334C17.3335 5.33334 5.3335 17.3333 5.3335 32C5.3335 46.6667 17.3335 58.6667 32.0002 58.6667Z" fill="#14D81C" />
+                                <path id="Vector_2" d="M20.6665 32L28.2132 39.5467L43.3332 24.4533" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </g>
+                        </g>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal" style="cursor: pointer;">
+                        <path d="M7.75732 16.2426L16.2426 7.75736" stroke="#1A1A1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M16.2426 16.2426L7.75732 7.75736" stroke="#1A1A1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <h2 class="success-heading">წარმატებული ავტორიზაცია</h2>
+                    <button type="submit" class="success-button" onclick="document.getElementById('id01').style.display='none'">კარგი</button>
+                </div>
+            </form>
+        </div>
+    </header>
+</body>
+</html>
