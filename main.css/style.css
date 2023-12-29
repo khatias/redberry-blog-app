@@ -3,6 +3,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 @font-face {
@@ -30,16 +31,17 @@
   
 body {
     font-family: 'FiraGO', sans-serif;
+    overflow-x: hidden;
+    width: 100vw;
 }
   
-
-
 header{
     display: flex;
     justify-content: space-between;
     padding:28px  76px;
     border-bottom: 1px solid #E4E3EB;
     background-color: #FFF;
+    border-bottom: 1px solid #E4E3EB;
 }
  
 .login-button{
@@ -99,7 +101,6 @@ header{
     
   }
  
-
 label[for="email"] {
     color: #1A1A1F;
     font-size: 14px;
@@ -216,4 +217,103 @@ button[type="submit"] {
     font-weight: 500;
     line-height: 20px; 
     border: none;
+}
+
+main{
+    background: #F3F2FA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 76px;
+    padding-right: 76px;
+}
+.heading-section{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    align-items: center;
+    width: 100%;
+}
+h1{
+    color: #1A1A1F;
+    font-size: 64px;
+    font-weight: 700;
+    padding-left: 89px;
+}
+
+.index-categories-section{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.index-category-button{
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    border: none;
+    cursor: pointer;
+    margin-top:24px;
+    margin-right: 24px;
+}
+
+.blogs-container{
+    display: grid;
+    justify-content: center;
+    /* align-items: center; */
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 56px 32px;
+    padding:70px;
+    /* align-content: center; */
+}
+.blog img{
+    max-width: 408px;
+    max-height: 328px;
+    border-radius: 12px;
+    padding-bottom: 24px;
+}
+.author-in-grid{
+    color: #1A1A1F;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    padding-bottom: 5px;
+}
+.date-in-grid{
+    color: #85858D;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; 
+    padding-bottom: 16px;
+}
+
+.blog h2{
+    color: #1A1A1F;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px; 
+    padding-bottom: 16px;
+}
+
+.category-button{
+    border:none;
+    border-radius: 30px;
+    padding: 6px 10px;
+}
+
+.description-in-grid{
+    color: #404049;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px; 
+    padding-bottom: 16px;
+
 }

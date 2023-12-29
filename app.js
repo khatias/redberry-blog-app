@@ -1,16 +1,17 @@
-
 let errorDisplayed = false;
 let createBlogButtonCreated = false;
+
 function login(event) {
     event.preventDefault();
 
-    const emailInput = document.getElementById('email');
-    const email = emailInput.value;
+    const loginEmailInput = document.getElementById('index-email');
+    const email = loginEmailInput.value;
     let formContainer = document.querySelector(".container");
-    let submitButton = formContainer.querySelector("button[type='submit']");
+    let loginSubmitButton = formContainer.querySelector("button[type='submit']");
     let header = document.querySelector(".header");
     let successContainer =document.querySelector(".success-container");
     let loginButton = document.querySelector(".login-button");
+
 
     fetch('https://api.blog.redberryinternship.ge/api/login', {
         method: 'POST',
@@ -22,56 +23,53 @@ function login(event) {
             email: email,
         }),
     })
-    .then(response => {
-        if (response.status === 204) {
-            formContainer.style.display = "none";
-            successContainer.style.display = "flex";
-            loginButton.style.display = "none";
-    
-         
-            if (!createBlogButtonCreated) {
-                let createBlogButton = document.createElement("button");
-                createBlogButton.textContent = "დაამატე ბლოგი";
-                createBlogButton.classList.add("create-blog-button"); 
-                header.appendChild(createBlogButton);
-    
-            
-                createBlogButtonCreated = true;
-            }
+        .then(response => {
+            if (response.status === 204) {
+                formContainer.style.display = "none";
+                successContainer.style.display = "flex";
+                loginButton.style.display = "none";
 
-        
+    
+                if (!createBlogButtonCreated) {
+                    let createBlogButton = document.createElement("button");
+                    createBlogButton.textContent = "დაამატე ბლოგი";
+                    createBlogButton.classList.add("create-blog-button");
+                    header.appendChild(createBlogButton);
+    
+                    createBlogButtonCreated = true;
+                    createBlogButton.addEventListener('click', () => {
+                        window.location.href = 'filling-page.html';
+                    });
+                }
             } else if (response.status === 422) {
-                if (!errorDisplayed) { 
-                    emailInput.style.border = '1px solid #EA1919';
-                    emailInput.style.backgroundColor = "#FAF2F3";
-                    emailInput.style.marginBottom = "8px";
-
+                if (!errorDisplayed) {
+                    loginEmailInput.style.border = '1px solid #EA1919';
+                    loginEmailInput.style.backgroundColor = "#FAF2F3";
+                    loginEmailInput.style.marginBottom = "8px";
+    
                     let errorContainer = document.createElement("div");
                     errorContainer.classList.add("error-container");
-
+    
                     let svgElement = document.createElement("div");
                     svgElement.classList.add("error-svg");
                     svgElement.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <g id="vuesax/linear/info-circle">
-                            <g id="info-circle">
-                                <path id="Vector" d="M10.0002 1.66666C5.41683 1.66666 1.66683 5.41666 1.66683 10C1.66683 14.5833 5.41683 18.3333 10.0002 18.3333C14.5835 18.3333 18.3335 14.5833 18.3335 10C18.3335 5.41666 14.5835 1.66666 10.0002 1.66666Z" fill="#EA1919"/>
-                                <path id="Vector_2" d="M10 13.3333L10 9.16666" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path id="Vector_3" d="M10.0044 6.66667L9.99691 6.66667" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <g id="vuesax/linear/info-circle">
+                                <g id="info-circle">
+                                    <path id="Vector" d="M10.0002 1.66666C5.41683 1.66666 1.66683 5.41666 1.66683 10C1.66683 14.5833 5.41683 18.3333 10.0002 18.3333C14.5835 18.3333 18.3335 14.5833 18.3335 10C18.3335 5.41666 14.5835 1.66666 10.0002 1.66666Z" fill="#EA1919"/>
+                                    <path id="Vector_2" d="M10 13.3333L10 9.16666" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path id="Vector_3" d="M10.0044 6.66667L9.99691 6.66667" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </g>
                             </g>
-                        </g>
-                    </svg>
-                `;
-
+                        </svg>
+                    `;
+    
                     let errorMessage = document.createElement("p");
                     errorMessage.textContent = "ელ-ფოსტა არ მოიძებნა";
-
                     errorContainer.appendChild(svgElement);
                     errorContainer.appendChild(errorMessage);
-
-                    formContainer.insertBefore(errorContainer, submitButton);
-
-                    errorDisplayed = true; 
+                    formContainer.insertBefore(errorContainer, loginSubmitButton);
+                    errorDisplayed = true;
                 }
             } else {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -86,4 +84,47 @@ function login(event) {
             console.error('Error:', error);
             alert(`An error occurred during login. ${error.message}`);
         });
+
 }
+
+////////////////////////////////////////////////////////////////////////
+// კატეგორიების დამატება მთავარ გვერძე
+///////////////////////////////////////////////////////////////////////
+fetch('https://api.blog.redberryinternship.ge/api/categories', {
+    method: 'GET',
+    headers: {
+        'Authorization': 'Bearer 5006c8b3f173e7235a5ea0bc3fc286de8a41ec89f597e42e0c50a156bd62ed71',
+    },
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+})
+.then(responseData => {
+    const categories = responseData?.data ?? [];
+    renderCategories(categories);
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+
+function renderCategories(categories) {
+    const indexCategoriesContainer = document.querySelector('.index-categories-container');
+    categories.forEach(category => {
+        const indexCategoryButton = document.createElement('button');
+        indexCategoryButton.classList.add('index-category-button');
+        indexCategoryButton.style.backgroundColor = category.background_color; 
+        indexCategoryButton.style.color = category.text_color;
+        indexCategoryButton.textContent = category.title;
+        
+        if(indexCategoriesContainer){
+            indexCategoriesContainer.appendChild(indexCategoryButton);
+        }
+    });
+}
+
+////////////////////////////////////////////////////////////////////////
+// კატეგორიების დამატება მთავარ გვერძე
+///////////////////////////////////////////////////////////////////////
