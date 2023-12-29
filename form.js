@@ -175,7 +175,7 @@ if(chooseCategoriesDiv){
 fetch('https://api.blog.redberryinternship.ge/api/categories', {
     method: 'GET',
     headers: {
-        'Authorization': 'Bearer 5006c8b3f173e7235a5ea0bc3fc286de8a41ec89f597e42e0c50a156bd62ed71',
+        'Authorization': 'Bearer 4dc6d437af30047acb5bef31554944c6d6d203a0e6185b6bd96b3ea20ba214be',
     },
 })
     .then(response => {
@@ -256,7 +256,7 @@ function submitForm(event) {
         method: 'POST',
         headers: {
             accept: 'application/json',
-            'Authorization': 'Bearer 5006c8b3f173e7235a5ea0bc3fc286de8a41ec89f597e42e0c50a156bd62ed71',
+            'Authorization': 'Bearer 4dc6d437af30047acb5bef31554944c6d6d203a0e6185b6bd96b3ea20ba214be',
         },
         body: formData,
     })
